@@ -5,7 +5,7 @@ document.querySelector('.file-input').addEventListener('change', function (event
   // Get the uploaded docs container
   const uploadedDocsContainer = document.querySelector('.uploaded-docs');
 
-  // Iterate through the uploaded files
+  
   Array.from(files).forEach(file => {
       // Create a div for the uploaded file
       const docDiv = document.createElement('div');
