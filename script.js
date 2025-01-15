@@ -2,7 +2,7 @@ document.querySelector('.file-input').addEventListener('change', function (event
   const fileInput = event.target;
   const files = fileInput.files;
 
-  // Get the uploaded docs container
+  // Get the uploaded 
   const uploadedDocsContainer = document.querySelector('.uploaded-docs');
 
   
