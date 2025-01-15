@@ -11,7 +11,7 @@ document.querySelector('.file-input').addEventListener('change', function (event
       const docDiv = document.createElement('div');
       docDiv.classList.add('doc');
 
-      // Add the file SVG icon
+      // Add the fi
       docDiv.innerHTML = `
           <svg class="file-svg" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#333">
               <path d="M197.69-185.39h564.62q5.38 0 8.84-3.46t3.46-8.84v-364.62l-212.3-212.3H197.69q-5.38 0-8.84 3.46t-3.46 8.84v564.62q0 5.38 3.46 8.84t8.84 3.46Zm0 45.39q-23.59 0-40.64-17.05T140-197.69v-564.62q0-23.59 17.05-40.64T197.69-820h383.46L820-581.15v383.46q0 23.59-17.05 40.64T762.31-140H197.69Zm91.7-167.92h381.22v-45.39H289.39v45.39Zm0-149.39h381.22v-45.38H289.39v45.38Zm0-149.38h251.76v-45.39H289.39v45.39Zm-104 421.3v-589.22V-185.39Z"/>
