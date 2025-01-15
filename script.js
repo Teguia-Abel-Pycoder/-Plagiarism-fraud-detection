@@ -33,7 +33,7 @@ document.querySelector('.file-input').addEventListener('change', function (event
       docDiv.querySelector('.cancel-svg').addEventListener('click', () => {
           docDiv.classList.add('fade-out'); // Add the fade-out class
 
-          // Wait for the transition to complete before removing the element
+          //  before removing the element
           setTimeout(() => {
               uploadedDocsContainer.removeChild(docDiv);
           }, 500); // Match the duration of the CSS transition
