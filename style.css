@@ -308,6 +308,9 @@ nav{
             mask-composite: subtract;
     animation: l3 1s infinite linear;
   }
+  .hidden {
+    display: none;
+}
   @keyframes l3 {to{transform: rotate(1turn)}}
 
 

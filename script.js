@@ -5,8 +5,10 @@ const fileInput = document.getElementById('fileInput');
 const uploadBox = document.querySelector('.upload-box');
 const uploadedDocs = document.querySelector('.uploaded-docs');
 const analyzeButton = document.querySelector('.analyze-button');
-
+const loader = document.querySelector('.loader');
 // Event listener for file input change
+// Show the loader initially
+
 let uploadedFiles = [];
 
 fileInput.addEventListener('change', (event) => {
@@ -92,6 +94,7 @@ analyzeButton.addEventListener('click', () => {
         alert("At least two files are required for comparison.");
         return;
     }
+    loader.classList.remove('hidden');
 
     const formData = new FormData();
     uploadedFiles.forEach((file) => {
@@ -99,16 +102,19 @@ analyzeButton.addEventListener('click', () => {
     });
 
     // Send the FormData to the server
-    fetch('http://localhost:3000/upload', {
+    fetch('https://plagiarism-apis.onrender.com/upload', {
         method: 'POST',
         body: formData,
     })
     .then(response => response.json())
     .then(data => {
+        loader.classList.add('hidden');
         console.log('Analysis results:', data);
         alert(`Analysis completed: ${JSON.stringify(data)}`);
+        
     })
     .catch(error => {
+        loader.classList.add('hidden');
         console.error('Error analyzing documents:', error);
         alert('An error occurred while analyzing the documents.');
     });
