@@ -88,6 +88,7 @@ function handleFileSelect(event) {
     }
 }
 
+const analysisResponse = {};
 
 analyzeButton.addEventListener('click', () => {
     if (uploadedFiles.length < 2) {
@@ -110,8 +111,8 @@ analyzeButton.addEventListener('click', () => {
     .then(data => {
         loader.classList.add('hidden');
         console.log('Analysis results:', data);
-        alert(`Analysis completed: ${JSON.stringify(data)}`);
-        
+        Object.assign(analysisResponse, data); // Update the analysisResponse object
+        renderResults(data); // Call renderResults with the fetched data
     })
     .catch(error => {
         loader.classList.add('hidden');
@@ -119,3 +120,59 @@ analyzeButton.addEventListener('click', () => {
         alert('An error occurred while analyzing the documents.');
     });
 });
+
+const resultsContainer = document.getElementById("results");
+const resultsContainerx = document.getElementById("resultx");
+// Function to create result HTML dynamically
+function renderResults(data) {
+    // Clear existing results if any
+    resultsContainer.innerHTML = '';
+    resultsContainerx.innerHTML = `<p><strong> Global similarity:</strong><span> ${data.globalSimilarity} </span> </p>`;
+
+    data.results.forEach((result, index) => {
+        // Create file comparison block
+        const comparisonBlock = document.createElement("div");
+        comparisonBlock.className = "file-details";
+
+        const fileHeader = document.createElement("div");
+        fileHeader.className = "file-header";
+        fileHeader.textContent = `Comparison ${index + 1}: ${result.file1.fileName} vs. ${result.file2.fileName}`;
+        fileHeader.addEventListener("click", () => {
+            details.classList.toggle("hidden");
+        });
+
+        const details = document.createElement("div");
+        details.className = "hidden";
+        details.innerHTML = `
+            <p><strong>File 1:</strong> ${result.file1.fileName} </p>
+            <p><strong>File 2:</strong> ${result.file2.fileName} </p>
+            <p><strong>Similarity Found?</strong> ${result.similarity.length} </p>
+        `;
+
+        // Add similar sections, if any
+        if (result.similarSections.length > 0) {
+            const sectionList = document.createElement("ul");
+            sectionList.className = "similar-sections";
+
+            result.similarSections.forEach((section) => {
+                const sectionItem = document.createElement("li");
+                sectionItem.innerHTML = `
+                    <p><strong>${section.location.file1}:</strong> ${section.section1}</p>
+                    <p><strong>${section.location.file2}:</strong> ${section.section2}</p>
+                    
+                    <p><strong>Similarity:</strong> ${section.similarity}</p>
+                `;
+                sectionList.appendChild(sectionItem);
+            });
+
+            details.appendChild(sectionList);
+        } else {
+            details.innerHTML += `<p>No similar sections found.</p>`;
+        }
+
+        // Append elements to the container
+        comparisonBlock.appendChild(fileHeader);
+        comparisonBlock.appendChild(details);
+        resultsContainer.appendChild(comparisonBlock);
+    });
+}

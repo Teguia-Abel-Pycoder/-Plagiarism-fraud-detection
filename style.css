@@ -161,12 +161,56 @@ nav{
     font-size: 12px;
     gap: 10px;
     height: 30px; 
-    width: 50%;
+    width: 100%;
     position: relative;
     margin: 0 auto;
 }
+.middle-container{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.sub-middle-container1{
+    width: 37%;
+}
+.sub-middle-container2{
+    width: 60%;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 5px;
+    height: 420px;
+    font-size: 12px;
+    padding: 10px;
+    position: relative;
+    .top{
+        font-size: 14px;
+        height: 30px;
+        color: #0056b3;
+        text-align: center;
+        width: 100%;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(220, 220, 220, 0.556);
+    }
+    .middle{
+    overflow-y: scroll;
+    height: 330.5px;
 
-
+    }
+    .bottom{
+        position: absolute;
+        border-top: 1px solid rgba(220, 220, 220, 0.556);
+        bottom: 0;
+        font-size: 11px;
+        width: 95%;
+        justify-content: center;
+        display: flex;
+        p{
+            span{
+                color: #077805;
+            }
+        }
+    }
+}
 .file-input {
     position: absolute;
     opacity: 0;
@@ -181,7 +225,7 @@ nav{
 }
 .uploaded-docs {
     transition: all 0.5s ease;
-    width: 50%;
+    width: 100%;
     margin: 10px auto;
     max-height: 330px;
     overflow-y: scroll;
@@ -189,7 +233,7 @@ nav{
 
 .doc{
     height: 55px; 
-    width: 95.5%;
+    width: 93.5%;
     border: 0.1px solid #25ff21;
     border: 0.1px solid #b0b7cc;
     border-radius: 4px;
@@ -353,3 +397,27 @@ nav{
     }
 }
 
+.file-details {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.similar-sections {
+    margin-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+.similar-sections li {
+    margin-bottom: 10px;
+    border-left: 2px solid #007bff;
+    padding-left: 10px;
+}
+.file-header {
+    font-weight: bold;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
